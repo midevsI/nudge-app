@@ -130,10 +130,15 @@ export function SettingsForm({
 				}
 			>
 				<div className="space-y-3 rounded-lg border border-white/75 bg-white/78 p-3 shadow-[0_8px_20px_rgba(15,23,42,0.06)]">
-					<Text size="1" weight="bold" className="uppercase tracking-[0.08em] text-zinc-600">
-						Send after
-					</Text>
-					<div className="mt-1.5">
+					<div className="flex flex-wrap items-center gap-3">
+						<Text
+							size="1"
+							weight="bold"
+							className="uppercase tracking-[0.08em] text-zinc-600"
+						>
+							Send after
+						</Text>
+						<div className="w-[140px]">
 						<Select.Root
 						value={String(values.inactive_days)}
 						onValueChange={(nextValue) =>
@@ -151,6 +156,7 @@ export function SettingsForm({
 								<Select.Item value="30">30 days</Select.Item>
 							</Select.Content>
 						</Select.Root>
+						</div>
 					</div>
 				</div>
 				<MessageField
