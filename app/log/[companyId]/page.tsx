@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import Link from "next/link";
+import TopLevelLink from "../TopLevelLink";
 import { Button, Card, Heading, Text } from "@whop/react/components";
 import { type NudgeLogRow, supabaseRequest } from "@/lib/supabase";
 import { whopsdk } from "@/lib/whop-sdk";
@@ -127,12 +128,12 @@ export default async function NudgeLogPage({
 								>
 									<div className="flex items-start justify-between gap-3">
 										<div>
-											<Link
+											<TopLevelLink
 												href={manageUrlsByMemberId.get(row.member_id) ?? `https://whop.com/company/${companyId}`}
 												className="text-[14px] font-semibold text-[#111111] underline-offset-2 hover:underline"
 											>
 												@{row.username}
-											</Link>
+											</TopLevelLink>
 											<Text className="mt-1 text-[12px] text-[#9ca3af]">{formatTimestamp(row.sent_at)}</Text>
 										</div>
 										<span
