@@ -34,59 +34,66 @@ async function createNotification(options: {
 		throw new Error(`Member ${options.memberId} has no linked user id`);
 	}
 
+	try {
+		const supportChannel = await whopsdk.supportChannels.create({
+			company_id: options.companyId,
+			user_id: userId,
+		});
+
+		await whopsdk.messages.create({
+			channel_id: supportChannel.id,
+			content: options.message,
+		});
+		return;
+	} catch (supportError) {
+		console.warn(
+			`Support channel DM failed for member ${options.memberId}; falling back to notification`,
+			supportError,
+		);
+	}
+
 	const notificationApi = (
 		whopsdk as unknown as {
 			notifications?: { create?: (payload: unknown) => Promise<unknown> };
 		}
 	).notifications;
 
-	if (notificationApi?.create) {
-		const attempts: Array<Record<string, string>> = [
-			{
-				company_id: options.companyId,
-				user_id: userId,
-				message: options.message,
-			},
-			{
-				company_id: options.companyId,
-				member_id: options.memberId,
-				message: options.message,
-			},
-			{
-				company_id: options.companyId,
-				user_id: userId,
-				title: "Nudge",
-				content: options.message,
-			},
-		];
+	if (!notificationApi?.create) {
+		throw new Error("Notifications API unavailable and support channel delivery failed");
+	}
 
-		let lastError: unknown;
-		for (const payload of attempts) {
-			try {
-				await notificationApi.create(payload);
-				return;
-			} catch (error) {
-				lastError = error;
-			}
-		}
+	const attempts: Array<Record<string, string>> = [
+		{
+			company_id: options.companyId,
+			user_id: userId,
+			message: options.message,
+		},
+		{
+			company_id: options.companyId,
+			member_id: options.memberId,
+			message: options.message,
+		},
+		{
+			company_id: options.companyId,
+			user_id: userId,
+			title: "Nudge",
+			content: options.message,
+		},
+	];
 
-		if (lastError) {
-			console.warn(
-				`Notification API attempts failed for member ${options.memberId}; falling back to support message`,
-				lastError,
-			);
+	let lastError: unknown;
+	for (const payload of attempts) {
+		try {
+			await notificationApi.create(payload);
+			return;
+		} catch (error) {
+			lastError = error;
 		}
 	}
 
-	const supportChannel = await whopsdk.supportChannels.create({
-		company_id: options.companyId,
-		user_id: userId,
-	});
-
-	await whopsdk.messages.create({
-		channel_id: supportChannel.id,
-		content: options.message,
-	});
+	throw lastError instanceof Error
+		? lastError
+		: new Error(`Notification fallback failed for member ${options.memberId}`);
 }
 
 async function appendNudgeLog(options: {

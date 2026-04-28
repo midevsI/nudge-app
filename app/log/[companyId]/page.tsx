@@ -66,6 +66,20 @@ export default async function NudgeLogPage({
 		},
 	});
 
+	const memberIds = Array.from(new Set(rows.map((row) => row.member_id)));
+	const manageUrlEntries = await Promise.all(
+		memberIds.map(async (memberId) => {
+			try {
+				const member = await whopsdk.members.retrieve(memberId);
+				const manageUrl = (member as { manage_url?: string | null }).manage_url;
+				return [memberId, manageUrl ?? `https://whop.com/company/${companyId}`] as const;
+			} catch {
+				return [memberId, `https://whop.com/company/${companyId}`] as const;
+			}
+		}),
+	);
+	const manageUrlsByMemberId = new Map(manageUrlEntries);
+
 	return (
 		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] px-4 py-6 md:px-6 md:py-8">
 			<div className="pointer-events-none absolute inset-0">
@@ -113,10 +127,13 @@ export default async function NudgeLogPage({
 								>
 									<div className="flex items-start justify-between gap-3">
 										<div>
-											<Text className="text-[14px] font-semibold text-[#111111]">
+											<Link
+												href={manageUrlsByMemberId.get(row.member_id) ?? `https://whop.com/company/${companyId}`}
+												className="text-[14px] font-semibold text-[#111111] underline-offset-2 hover:underline"
+											>
 												@{row.username}
-											</Text>
-											<Text className="text-[12px] text-[#9ca3af]">{formatTimestamp(row.sent_at)}</Text>
+											</Link>
+											<Text className="mt-1 text-[12px] text-[#9ca3af]">{formatTimestamp(row.sent_at)}</Text>
 										</div>
 										<span
 											className={[
