@@ -10,14 +10,14 @@ export default async function SuccessPage({
 	const { companyId } = await params;
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] dark:bg-[#0f172a] px-4 py-10 text-center">
+		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] dark:bg-black px-4 py-10 text-center">
 			<div className="pointer-events-none absolute inset-0">
-				<div className="absolute -left-20 top-0 h-56 w-56 rounded-full bg-[#FA4616]/14 dark:bg-[#FA4616]/10 blur-2xl" />
-				<div className="absolute -right-20 bottom-8 h-64 w-64 rounded-full bg-[#0f172a]/6 dark:bg-slate-400/5 blur-2xl" />
+				<div className="absolute -left-20 top-0 h-56 w-56 rounded-full bg-[#FA4616]/14 dark:bg-[#FA4616]/3 blur-2xl" />
+				<div className="absolute -right-20 bottom-8 h-64 w-64 rounded-full bg-[#0f172a]/6 dark:hidden blur-2xl" />
 			</div>
 
 			<div className="relative mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[540px] items-center justify-center">
-				<div className="w-full rounded-[28px] border border-white/80 dark:border-slate-600/50 bg-white/80 dark:bg-slate-800/50 p-7 shadow-[0_24px_80px_rgba(15,23,42,0.14)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.3)] sm:p-9">
+				<div className="w-full rounded-[28px] border border-white/80 dark:border-gray-800 bg-white/80 dark:bg-gray-950 p-7 shadow-[0_24px_80px_rgba(15,23,42,0.14)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] sm:p-9">
 					<Image
 						src="/thumbsup.svg"
 						alt="Thumbs up illustration"
@@ -27,10 +27,10 @@ export default async function SuccessPage({
 						priority
 					/>
 
-					<h1 className="mt-6 text-[30px] font-semibold tracking-[-0.02em] text-[#0f172a] dark:text-slate-100">
+					<h1 className="mt-6 text-[30px] font-semibold tracking-[-0.02em] text-[#0f172a] dark:text-white">
 						Nudge is running.
 					</h1>
-					<p className="mx-auto mt-3 max-w-[360px] text-[15px] leading-[1.65] text-[#526070] dark:text-slate-400">
+					<p className="mx-auto mt-3 max-w-[360px] text-[15px] leading-[1.65] text-[#526070] dark:text-gray-500">
 						We&apos;re watching your members in the background. You&apos;ll never lose one without a
 						fight.
 					</p>
@@ -38,7 +38,7 @@ export default async function SuccessPage({
 					<Button
 						asChild
 						size="3"
-						className="mt-8 h-12 w-full rounded-xl border border-white/40 dark:border-orange-500/30 bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] dark:bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] text-[15px] font-semibold text-white shadow-[0_12px_30px_rgba(250,70,22,0.34)] dark:shadow-[0_12px_30px_rgba(250,70,22,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95"
+						className="mt-8 h-12 w-full rounded-xl border border-white/40 dark:border-orange-600 bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] dark:bg-[#FA4616] text-[15px] font-semibold text-white shadow-[0_12px_30px_rgba(250,70,22,0.34)] dark:shadow-[0_4px_12px_rgba(250,70,22,0.3)] transition-all duration-200 hover:-translate-y-0.5 dark:hover:bg-[#E83D0E]"
 					>
 						<Link href={`/home/${companyId}`}>Go to Dashboard</Link>
 					</Button>

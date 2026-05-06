@@ -22,9 +22,9 @@ export default async function ExperiencePage({
 	const displayName = user.name || `@${user.username}`;
 
 	return (
-		<div className="flex flex-col p-8 gap-4 dark:bg-[#0f172a] min-h-screen">
+		<div className="flex flex-col p-8 gap-4 dark:bg-black min-h-screen">
 			<div className="flex justify-between items-center gap-4">
-				<h1 className="text-9 dark:text-slate-100">
+				<h1 className="text-9 dark:text-white">
 					Hi <strong>{displayName}</strong>!
 				</h1>
 				<Link href="https://docs.whop.com/apps" target="_blank">
@@ -34,18 +34,18 @@ export default async function ExperiencePage({
 				</Link>
 			</div>
 
-			<p className="text-3 text-gray-10 dark:text-slate-400">
+			<p className="text-3 text-gray-10 dark:text-gray-500">
 				Welcome to you whop app! Replace this template with your own app. To
 				get you started, here's some helpful data you can fetch from whop.
 			</p>
 
-			<h3 className="text-6 font-bold dark:text-slate-100">Experience data</h3>
+			<h3 className="text-6 font-bold dark:text-white">Experience data</h3>
 			<JsonViewer data={experience} />
 
-			<h3 className="text-6 font-bold dark:text-slate-100">User data</h3>
+			<h3 className="text-6 font-bold dark:text-white">User data</h3>
 			<JsonViewer data={user} />
 
-			<h3 className="text-6 font-bold dark:text-slate-100">Access data</h3>
+			<h3 className="text-6 font-bold dark:text-white">Access data</h3>
 			<JsonViewer data={access} />
 		</div>
 	);
@@ -53,8 +53,8 @@ export default async function ExperiencePage({
 
 function JsonViewer({ data }: { data: any }) {
 	return (
-		<pre className="text-2 border border-gray-a4 dark:border-slate-600 rounded-lg p-4 bg-gray-a2 dark:bg-slate-800 dark:text-slate-300 max-h-72 overflow-y-auto">
-			<code className="text-gray-10 dark:text-slate-300">{JSON.stringify(data, null, 2)}</code>
+		<pre className="text-2 border border-gray-a4 dark:border-gray-800 rounded-lg p-4 bg-gray-a2 dark:bg-gray-950 dark:text-gray-400 max-h-72 overflow-y-auto">
+			<code className="text-gray-10 dark:text-gray-400">{JSON.stringify(data, null, 2)}</code>
 		</pre>
 	);
 }

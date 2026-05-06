@@ -169,10 +169,10 @@ export function HomeDashboardClient({
 	}
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] dark:bg-[#0f172a] pb-10">
+		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] dark:bg-black pb-10">
 			<div className="pointer-events-none absolute inset-0">
-				<div className="absolute -left-16 top-4 h-56 w-56 rounded-full bg-[#FA4616]/12 dark:bg-[#FA4616]/10 blur-2xl" />
-				<div className="absolute -right-20 top-28 h-72 w-72 rounded-full bg-[#0f172a]/6 dark:bg-slate-400/5 blur-2xl" />
+				<div className="absolute -left-16 top-4 h-56 w-56 rounded-full bg-[#FA4616]/12 dark:bg-[#FA4616]/3 blur-2xl" />
+				<div className="absolute -right-20 top-28 h-72 w-72 rounded-full bg-[#0f172a]/6 dark:hidden blur-2xl" />
 			</div>
 
 			<div className="relative mx-auto w-full">
@@ -182,13 +182,13 @@ export function HomeDashboardClient({
 				visible={toastState.visible}
 			/>
 
-			<div className="border-b border-[#e2e8f0] dark:border-slate-700/50 bg-white/55 dark:bg-slate-800/50">
+			<div className="border-b border-[#e2e8f0] dark:border-gray-800 bg-white/55 dark:bg-black">
 				<div className="flex flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
 					<div>
-						<Heading size="6" className="text-[27px] font-semibold tracking-[-0.02em] text-[#0f172a] dark:text-slate-100">
+						<Heading size="6" className="text-[27px] font-semibold tracking-[-0.02em] text-[#0f172a] dark:text-white">
 							Nudge
 						</Heading>
-						<Text className="mt-1 text-[14px] text-[#526070] dark:text-slate-400">
+						<Text className="mt-1 text-[14px] text-[#526070] dark:text-gray-500">
 							Your retention engine is running on autopilot.
 						</Text>
 					</div>
@@ -196,14 +196,14 @@ export function HomeDashboardClient({
 						<Button
 							asChild
 							size="2"
-							className="h-10 rounded-lg border border-white/70 dark:border-slate-600 bg-white/75 dark:bg-slate-700 px-3.5 text-[13px] font-medium text-[#334155] dark:text-slate-300 shadow-[0_8px_20px_rgba(15,23,42,0.08)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-all duration-200 hover:-translate-y-0.5"
+							className="h-10 rounded-lg border border-white/70 dark:border-gray-700 bg-white/75 dark:bg-gray-900 px-3.5 text-[13px] font-medium text-[#334155] dark:text-gray-300 shadow-[0_8px_20px_rgba(15,23,42,0.08)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-all duration-200 hover:-translate-y-0.5"
 						>
 							<Link href={`/settings/${companyId}`}>Settings</Link>
 						</Button>
 						<Button
 							asChild
 							size="2"
-							className="h-10 rounded-lg border border-white/40 dark:border-orange-500/30 bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] dark:bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] px-4 text-[13px] font-semibold text-white shadow-[0_12px_28px_rgba(250,70,22,0.35)] dark:shadow-[0_12px_28px_rgba(250,70,22,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95"
+							className="h-10 rounded-lg border border-white/40 dark:border-orange-600 bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] dark:bg-[#FA4616] px-4 text-[13px] font-semibold text-white shadow-[0_12px_28px_rgba(250,70,22,0.35)] dark:shadow-[0_4px_12px_rgba(250,70,22,0.3)] transition-all duration-200 hover:-translate-y-0.5 dark:hover:bg-[#E83D0E]"
 						>
 							<Link href={`/log/${companyId}`}>View sent nudges</Link>
 						</Button>
@@ -212,7 +212,7 @@ export function HomeDashboardClient({
 			</div>
 
 			<div className="px-4 py-6 sm:px-6">
-				<Text className="pb-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#64748b] dark:text-slate-500">
+				<Text className="pb-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#64748b] dark:text-gray-600">
 					Active Nudges
 				</Text>
 
@@ -220,17 +220,17 @@ export function HomeDashboardClient({
 				{cards.map((card) => (
 					<Card
 						key={card.key}
-						className="rounded-[18px] border border-white/80 dark:border-slate-600/40 bg-white/82 dark:bg-slate-800/40 p-[18px] shadow-[0_10px_28px_rgba(15,23,42,0.08)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.2)]"
+						className="rounded-[18px] border border-white/80 dark:border-gray-800 bg-white/82 dark:bg-gray-950 p-[18px] shadow-[0_10px_28px_rgba(15,23,42,0.08)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
 					>
 						{confirmingDelete === card.key ? (
 							<div>
-								<Text className="text-[14px] text-[#111111] dark:text-slate-200">Delete this nudge?</Text>
+								<Text className="text-[14px] text-[#111111] dark:text-white">Delete this nudge?</Text>
 								<div className="mt-3 flex gap-2">
 									<Button
 										type="button"
 										variant="soft"
 										onClick={() => setConfirmingDelete(null)}
-										className="h-8 rounded-md border border-zinc-300 dark:border-slate-600 px-3 text-xs text-zinc-700 dark:text-slate-300 dark:bg-slate-700"
+										className="h-8 rounded-md border border-zinc-300 dark:border-gray-700 px-3 text-xs text-zinc-700 dark:text-gray-300 dark:bg-gray-900"
 									>
 										Cancel
 									</Button>
@@ -238,7 +238,7 @@ export function HomeDashboardClient({
 										type="button"
 										onClick={() => void deleteTrigger(card.key)}
 										disabled={isDeleting === card.key}
-										className="h-8 rounded-md bg-[#ef4444] dark:bg-red-600 px-3 text-xs font-medium text-white"
+										className="h-8 rounded-md bg-[#ef4444] dark:bg-red-700 px-3 text-xs font-medium text-white"
 									>
 										Delete
 									</Button>
@@ -247,7 +247,7 @@ export function HomeDashboardClient({
 						) : (
 							<>
 								<div className="flex items-start justify-between gap-3">
-									<div className="flex items-center gap-2 text-[15px] font-semibold text-[#111111] dark:text-slate-200">
+									<div className="flex items-center gap-2 text-[15px] font-semibold text-[#111111] dark:text-white">
 										<span>{card.icon}</span>
 										<span>{card.title}</span>
 									</div>
@@ -255,7 +255,7 @@ export function HomeDashboardClient({
 										<Button
 											type="button"
 											variant="ghost"
-												className="h-8 w-8 min-w-8 rounded-lg border border-white/60 dark:border-slate-600 bg-white/85 dark:bg-slate-700 p-0 text-[#888888] dark:text-slate-500 shadow-[0_6px_16px_rgba(15,23,42,0.06)] dark:shadow-[0_6px_16px_rgba(0,0,0,0.2)] transition-colors duration-200 hover:text-[#FA4616] hover:bg-[#fff5ed] dark:hover:text-orange-400 dark:hover:bg-orange-950/30"
+												className="h-8 w-8 min-w-8 rounded-lg border border-white/60 dark:border-gray-800 bg-white/85 dark:bg-gray-900 p-0 text-[#888888] dark:text-gray-500 shadow-[0_6px_16px_rgba(15,23,42,0.06)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)] transition-colors duration-200 hover:text-[#FA4616] hover:bg-[#fff5ed] dark:hover:text-orange-400 dark:hover:bg-gray-800"
 											asChild
 										>
 											<Link href={`/edit/${companyId}?trigger=${card.key}`}>
@@ -265,7 +265,7 @@ export function HomeDashboardClient({
 										<Button
 											type="button"
 											variant="ghost"
-											className="h-8 w-8 min-w-8 rounded-lg border border-white/60 dark:border-slate-600 bg-white/85 dark:bg-slate-700 p-0 text-[#888888] dark:text-slate-500 shadow-[0_6px_16px_rgba(15,23,42,0.06)] dark:shadow-[0_6px_16px_rgba(0,0,0,0.2)] transition-colors duration-200 hover:text-[#ef4444] hover:bg-[#fef2f2] dark:hover:text-red-400 dark:hover:bg-red-950/30"
+											className="h-8 w-8 min-w-8 rounded-lg border border-white/60 dark:border-gray-800 bg-white/85 dark:bg-gray-900 p-0 text-[#888888] dark:text-gray-500 shadow-[0_6px_16px_rgba(15,23,42,0.06)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)] transition-colors duration-200 hover:text-[#ef4444] hover:bg-[#fef2f2] dark:hover:text-red-400 dark:hover:bg-gray-800"
 											onClick={() => setConfirmingDelete(card.key)}
 										>
 											<TrashIcon className="w-4 h-4" />
@@ -273,14 +273,14 @@ export function HomeDashboardClient({
 									</div>
 								</div>
 
-								<div className="mt-2 rounded-xl bg-[#f8fafc] dark:bg-slate-700/40 px-3 py-2.5 text-left">
-									<Text className="text-[13px] italic text-[#555555] dark:text-slate-400">
+								<div className="mt-2 rounded-xl bg-[#f8fafc] dark:bg-gray-900 px-3 py-2.5 text-left">
+									<Text className="text-[13px] italic text-[#555555] dark:text-gray-500">
 										{card.message ? truncateMessage(card.message, 80) : "No message configured..."}
 									</Text>
 								</div>
 
 								<div className="mt-2.5 flex items-center justify-between">
-									<Text className="text-[12px] text-[#888888] dark:text-slate-500">
+									<Text className="text-[12px] text-[#888888] dark:text-gray-600">
 										{card.key === "inactive" ? `Sends after ${card.days ?? "-"} days` : ""}
 									</Text>
 									<div className="flex items-center gap-1.5">
@@ -288,12 +288,12 @@ export function HomeDashboardClient({
 											className={[
 												"h-2 w-2 rounded-full",
 												card.enabled
-													? "bg-[#22c55e] dark:bg-green-500"
-													: "bg-[#d1d5db] dark:bg-slate-600",
+													? "bg-[#22c55e] dark:bg-green-600"
+													: "bg-[#d1d5db] dark:bg-gray-700",
 											].join(" ")}
 										/>
 										<Text
-											className={card.enabled ? "text-[12px] font-medium text-[#22c55e] dark:text-green-400" : "text-[12px] text-[#9ca3af] dark:text-slate-500"}
+											className={card.enabled ? "text-[12px] font-medium text-[#22c55e] dark:text-green-500" : "text-[12px] text-[#9ca3af] dark:text-gray-600"}
 										>
 											{card.enabled ? "Live" : "Paused"}
 										</Text>
@@ -306,8 +306,8 @@ export function HomeDashboardClient({
 			</div>
 
 			{allPaused ? (
-				<div className="mt-4 rounded-xl border border-[#fed7aa] dark:border-orange-900/50 bg-[#fff7ed] dark:bg-orange-950/20 p-4">
-					<Text className="text-center text-[13px] text-[#FA4616] dark:text-orange-400">
+				<div className="mt-4 rounded-xl border border-[#fed7aa] dark:border-orange-900/40 bg-[#fff7ed] dark:bg-orange-950/10 p-4">
+					<Text className="text-center text-[13px] text-[#FA4616] dark:text-orange-500">
 						All nudges are paused. Edit a nudge to reactivate.
 					</Text>
 				</div>
