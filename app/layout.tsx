@@ -25,10 +25,54 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							(function() {
+								try {
+									// Detect parent iframe theme or system preference
+									const htmlElement = document.documentElement;
+									
+									// Check if we can access parent frame's theme
+									if (window.parent !== window) {
+										try {
+											const parentHtml = window.parent.document.documentElement;
+											const parentHasDark = parentHtml.classList.contains('dark') || 
+														  window.parent.matchMedia('(prefers-color-scheme: dark)').matches;
+											if (parentHasDark) {
+												htmlElement.classList.add('dark');
+											}
+										} catch (e) {
+											// Can't access parent, fall back to system preference
+										}
+									} else {
+										// Not in iframe, use system preference
+										if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+											htmlElement.classList.add('dark');
+										}
+									}
+									
+									// Listen for system preference changes
+									window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+										if (e.matches) {
+											htmlElement.classList.add('dark');
+										} else {
+											htmlElement.classList.remove('dark');
+										}
+									});
+								} catch (e) {
+									console.error('Theme detection error:', e);
+								}
+							})();
+						`,
+					}}
+				/>
+			</head>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<WhopApp accentColor="orange" appearance="light">
+				<WhopApp accentColor="orange" appearance="auto">
 					{children}
 				</WhopApp>
 			</body>

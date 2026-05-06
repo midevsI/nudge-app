@@ -30,15 +30,15 @@ export default async function DashboardPage({
 	}
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] px-4 py-10">
+		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] dark:bg-[#0f172a] px-4 py-10">
 			<div className="pointer-events-none absolute inset-0">
-				<div className="absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#FA4616]/18 blur-2xl" />
-				<div className="absolute -right-24 top-24 h-80 w-80 rounded-full bg-[#0f172a]/8 blur-2xl" />
-				<div className="absolute bottom-0 left-1/2 h-64 w-[90%] -translate-x-1/2 rounded-full bg-white/28 blur-2xl" />
+				<div className="absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#FA4616]/18 dark:bg-[#FA4616]/10 blur-2xl" />
+				<div className="absolute -right-24 top-24 h-80 w-80 rounded-full bg-[#0f172a]/8 dark:bg-slate-400/5 blur-2xl" />
+				<div className="absolute bottom-0 left-1/2 h-64 w-[90%] -translate-x-1/2 rounded-full bg-white/28 dark:bg-slate-600/20 blur-2xl" />
 			</div>
 
 			<div className="relative mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[760px] flex-col items-center justify-center text-center">
-				<div className="inline-flex items-center rounded-full border border-white/80 bg-white/60 px-3 py-1 text-[12px] font-semibold tracking-[0.08em] text-[#334155] backdrop-blur-sm">
+				<div className="inline-flex items-center rounded-full border border-white/80 dark:border-slate-600/60 bg-white/60 dark:bg-slate-800/40 px-3 py-1 text-[12px] font-semibold tracking-[0.08em] text-[#334155] dark:text-slate-300 backdrop-blur-sm">
 					WELCOME TO NUDGE
 				</div>
 
@@ -53,10 +53,10 @@ export default async function DashboardPage({
 					/>
 				</div>
 
-				<h1 className="mt-8 max-w-[620px] text-[28px] font-semibold tracking-[-0.025em] text-[#0f172a] sm:text-[36px]">
+				<h1 className="mt-8 max-w-[620px] text-[28px] font-semibold tracking-[-0.025em] text-[#0f172a] dark:text-slate-100 sm:text-[36px]">
 					Turn churn into second chances.
 				</h1>
-				<p className="mx-auto mt-3 max-w-[520px] text-[15px] leading-[1.65] text-[#526070]">
+				<p className="mx-auto mt-3 max-w-[520px] text-[15px] leading-[1.65] text-[#526070] dark:text-slate-400">
 					Nudge reaches inactive, canceling, and failed-payment members
 					automatically so you recover revenue without extra manual work.
 				</p>
@@ -64,7 +64,7 @@ export default async function DashboardPage({
 				<Button
 					asChild
 					size="3"
-					className="mt-8 h-12 w-full max-w-[360px] rounded-xl border border-white/40 bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] text-[15px] font-semibold text-white shadow-[0_14px_34px_rgba(250,70,22,0.36)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95"
+					className="mt-8 h-12 w-full max-w-[360px] rounded-xl border border-white/40 dark:border-orange-500/30 bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] dark:bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] text-[15px] font-semibold text-white shadow-[0_14px_34px_rgba(250,70,22,0.36)] dark:shadow-[0_14px_34px_rgba(250,70,22,0.5)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-95"
 				>
 					<Link href={`/settings/${companyId}`}>Set up Nudge</Link>
 				</Button>
