@@ -31,38 +31,66 @@ export default function RootLayout({
 						__html: `
 							(function() {
 								try {
-									// Detect parent iframe theme or system preference
 									const htmlElement = document.documentElement;
-									
-									// Check if we can access parent frame's theme
-									if (window.parent !== window) {
+									const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+									function setDarkMode(enabled) {
+										if (enabled) htmlElement.classList.add('dark');
+										else htmlElement.classList.remove('dark');
+									}
+
+									function parseTheme(value) {
+										if (!value) return null;
+										const normalized = String(value).toLowerCase();
+										if (normalized === 'dark') return true;
+										if (normalized === 'light') return false;
+										return null;
+									}
+
+									function detectThemeFromUrl() {
+										const url = new URL(window.location.href);
+										const fromTheme = parseTheme(url.searchParams.get('theme'));
+										if (fromTheme !== null) return fromTheme;
+										return parseTheme(url.searchParams.get('appearance'));
+									}
+
+									function detectThemeFromParent() {
+										if (window.parent === window) return null;
 										try {
 											const parentHtml = window.parent.document.documentElement;
-											const parentHasDark = parentHtml.classList.contains('dark') || 
-														  window.parent.matchMedia('(prefers-color-scheme: dark)').matches;
-											if (parentHasDark) {
-												htmlElement.classList.add('dark');
-											}
-										} catch (e) {
-											// Can't access parent, fall back to system preference
+											if (parentHtml.classList.contains('dark')) return true;
+											if (parentHtml.classList.contains('light')) return false;
+										} catch (_) {
+											return null;
 										}
-									} else {
-										// Not in iframe, use system preference
-										if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-											htmlElement.classList.add('dark');
-										}
+										return null;
 									}
-									
-									// Listen for system preference changes
-									window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-										if (e.matches) {
-											htmlElement.classList.add('dark');
-										} else {
-											htmlElement.classList.remove('dark');
-										}
+
+									const urlTheme = detectThemeFromUrl();
+									const parentTheme = detectThemeFromParent();
+									const initialDark = urlTheme ?? parentTheme ?? media.matches;
+									setDarkMode(initialDark);
+
+									media.addEventListener('change', function(event) {
+										const explicitTheme = detectThemeFromUrl() ?? detectThemeFromParent();
+										if (explicitTheme === null) setDarkMode(event.matches);
 									});
-								} catch (e) {
-									console.error('Theme detection error:', e);
+
+									window.addEventListener('message', function(event) {
+										const data = event && event.data ? event.data : null;
+										const candidate =
+											parseTheme(data?.theme) ??
+											parseTheme(data?.appearance) ??
+											parseTheme(data?.payload?.theme) ??
+											parseTheme(data?.payload?.appearance);
+										if (candidate !== null) setDarkMode(candidate);
+									});
+								} catch (_) {
+									if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+										htmlElement.classList.add('dark');
+									} else {
+										htmlElement.classList.remove('dark');
+									}
 								}
 							})();
 						`,

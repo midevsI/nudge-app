@@ -39,8 +39,10 @@ export function Toast({
 		>
 			<div
 				className={[
-					"flex items-center gap-2 rounded-xl border bg-white/78 px-4 py-3 shadow-[0_12px_28px_rgba(15,23,42,0.16)] backdrop-blur-md",
-					type === "success" ? "border-emerald-200/80" : "border-red-200/80",
+					"flex items-center gap-2 rounded-xl border px-4 py-3 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]",
+					type === "success"
+						? "border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c]"
+						: "border-[#fecaca] dark:border-[#4b1b1b] bg-[#fff5f5] dark:bg-[#2d0f0f]",
 				].join(" ")}
 			>
 				<Text

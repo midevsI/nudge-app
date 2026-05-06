@@ -46,25 +46,21 @@ export default async function SettingsPage({
 	};
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] dark:bg-black px-4 py-6 md:px-6 md:py-8">
-			<div className="pointer-events-none absolute inset-0">
-				<div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-[#FA4616]/12 dark:bg-[#FA4616]/3 blur-2xl" />
-				<div className="absolute -right-16 bottom-12 h-64 w-64 rounded-full bg-[#0f172a]/6 dark:hidden blur-2xl" />
-			</div>
-			<div className="relative mx-auto w-full max-w-3xl">
-				<div className="mb-6 rounded-[20px] border border-white/80 dark:border-gray-800 bg-white/78 dark:bg-gray-950 p-4 shadow-[0_16px_40px_rgba(15,23,42,0.1)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] md:p-5">
+		<div className="min-h-screen bg-[#f5f5f5] dark:bg-[#111111] px-4 py-6 md:px-6 md:py-8">
+			<div className="mx-auto w-full max-w-3xl">
+				<div className="mb-6 rounded-[14px] border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] p-4 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] md:p-5">
 					<div className="flex items-center gap-3">
 					<Button
 						asChild
 						size="2"
-						className="gap-1.5 rounded-full border border-white/70 dark:border-gray-700 bg-white/85 dark:bg-gray-900 px-3 text-[#334155] dark:text-gray-300 shadow-[0_8px_20px_rgba(15,23,42,0.08)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
+						className="gap-1.5 rounded-full border border-[#e0e0e0] dark:border-[#333333] bg-[#ffffff] dark:bg-[#222222] px-3 text-[#555555] dark:text-[#999999]"
 					>
 						<Link href={`/dashboard/${companyId}`}>
 							<span aria-hidden="true">←</span>
 							<span>Back</span>
 						</Link>
 					</Button>
-					<Heading size="6" className="text-[22px] font-semibold tracking-[-0.02em] text-[#0f172a] dark:text-white">
+					<Heading size="6" className="text-[22px] font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0]">
 						Nudge Settings
 					</Heading>
 					</div>

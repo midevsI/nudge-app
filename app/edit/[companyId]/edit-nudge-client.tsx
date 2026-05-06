@@ -138,20 +138,20 @@ export function EditNudgeClient({
 	}
 
 	return (
-		<div className="min-h-screen bg-[#f5f5f5] dark:bg-black px-4 py-6 md:px-6 md:py-8">
+		<div className="min-h-screen bg-[#f5f5f5] dark:bg-[#111111] px-4 py-6 md:px-6 md:py-8">
 			<Toast message={toastMessage} type={toastType} visible={toastVisible} />
 
 			<div className="mx-auto w-full max-w-2xl">
 				<div className="mb-6 flex items-center gap-3">
-					<Button asChild size="2" className="gap-1.5 rounded-full border border-zinc-300 dark:border-gray-800 bg-white dark:bg-gray-950 px-3 text-zinc-700 dark:text-gray-300">
+					<Button asChild size="2" className="gap-1.5 rounded-full border border-[#e0e0e0] dark:border-[#333333] bg-[#ffffff] dark:bg-[#222222] px-3 text-[#555555] dark:text-[#999999]">
 						<Link href={`/home/${companyId}`}>← Back</Link>
 					</Button>
-					<Heading size="6" className="text-[20px] font-bold dark:text-white">Edit Nudge</Heading>
+					<Heading size="6" className="text-[20px] font-bold text-[#111111] dark:text-[#f0f0f0]">Edit Nudge</Heading>
 				</div>
 
-				<Card className="rounded-[14px] bg-white dark:bg-gray-950 p-5 [box-shadow:0_1px_4px_rgba(0,0,0,0.07)] dark:[box-shadow:0_4px_12px_rgba(0,0,0,0.3)]">
+				<Card className="rounded-[14px] border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] p-5 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
 					<div className="flex items-start justify-between gap-3">
-						<Heading size="4" className="dark:text-white">{triggerConfig.title}</Heading>
+						<Heading size="4" className="text-[#111111] dark:text-[#f0f0f0]">{triggerConfig.title}</Heading>
 						<Switch
 							checked={triggerConfig.enabled}
 							onCheckedChange={(next: boolean) => {
@@ -164,9 +164,9 @@ export function EditNudgeClient({
 
 					{trigger === "inactive" ? (
 						<div className="mt-4">
-							<Text className="mb-2 text-[13px] font-medium text-zinc-600 dark:text-gray-600">Send after</Text>
+							<Text className="mb-2 text-[13px] font-medium text-[#888888] dark:text-[#555555]">Send after</Text>
 							<Select.Root value={String(inactiveDays)} onValueChange={(value: string) => setInactiveDays(Number(value))}>
-								<Select.Trigger className="dark:bg-gray-900 dark:text-white dark:border-gray-800" />
+								<Select.Trigger className="bg-[#ffffff] dark:bg-[#222222] text-[#111111] dark:text-[#f0f0f0] border-[#e0e0e0] dark:border-[#333333]" />
 								<Select.Content>
 									<Select.Item value="3">3 days</Select.Item>
 									<Select.Item value="7">7 days</Select.Item>
@@ -178,7 +178,7 @@ export function EditNudgeClient({
 					) : null}
 
 					<div className="mt-4">
-						<Text className="mb-2 text-[13px] font-medium text-zinc-600 dark:text-gray-600">Message</Text>
+						<Text className="mb-2 text-[13px] font-medium text-[#888888] dark:text-[#555555]">Message</Text>
 						<TextArea
 							rows={4}
 							maxLength={160}
@@ -189,9 +189,9 @@ export function EditNudgeClient({
 								if (trigger === "canceling") setCancelMessage(next);
 								if (trigger === "payment") setPaymentMessage(next);
 							}}
-							className="dark:bg-gray-900 dark:text-white dark:border-gray-800"
+							className="bg-[#ffffff] dark:bg-[#222222] text-[#111111] dark:text-[#f0f0f0] border-[#e0e0e0] dark:border-[#333333]"
 						/>
-						<Text className="mt-1 text-[12px] text-zinc-500 dark:text-gray-600">{triggerConfig.count}/160</Text>
+						<Text className="mt-1 text-[12px] text-[#888888] dark:text-[#555555]">{triggerConfig.count}/160</Text>
 					</div>
 				</Card>
 
@@ -200,7 +200,7 @@ export function EditNudgeClient({
 						type="button"
 						onClick={() => void saveChanges()}
 						disabled={isSaving}
-						className="h-12 w-full rounded-[10px] bg-[#FA4616] dark:bg-[#FA4616] dark:hover:bg-[#E83D0E] text-[15px] font-semibold text-white shadow-[0_12px_30px_rgba(250,70,22,0.34)] dark:shadow-[0_4px_12px_rgba(250,70,22,0.3)] transition-all duration-200 hover:-translate-y-0.5"
+						className="h-12 w-full rounded-[10px] border border-[#FA4616] bg-[#FA4616] text-[15px] font-semibold text-white transition-colors hover:bg-[#E83D0E]"
 					>
 						{isSaving ? "Saving..." : "Save Changes"}
 					</Button>
@@ -209,19 +209,19 @@ export function EditNudgeClient({
 						type="button"
 						variant="ghost"
 						onClick={() => setConfirmDelete((prev) => !prev)}
-						className="mx-auto text-[13px] text-[#ef4444] dark:text-red-500"
+						className="mx-auto text-[13px] text-[#ef4444]"
 					>
 						Delete this nudge
 					</Button>
 				</div>
 
 				{confirmDelete ? (
-					<div className="mt-3 rounded-xl border border-[#fecaca] dark:border-red-900/30 bg-[#fff5f5] dark:bg-red-950/10 p-3">
+					<div className="mt-3 rounded-xl border border-[#fecaca] dark:border-[#4b1b1b] bg-[#fff5f5] dark:bg-[#2d0f0f] p-3">
 						<Text className="text-[13px] text-[#991b1b] dark:text-red-400">
 							Are you sure? This will stop this nudge permanently.
 						</Text>
 						<div className="mt-3 flex gap-2">
-							<Button type="button" variant="soft" className="h-8 border border-zinc-300 dark:border-gray-800 dark:bg-gray-900 text-xs dark:text-gray-300" onClick={() => setConfirmDelete(false)}>
+							<Button type="button" variant="soft" className="h-8 border border-[#e0e0e0] dark:border-[#333333] bg-[#ffffff] dark:bg-[#222222] text-xs text-[#555555] dark:text-[#999999]" onClick={() => setConfirmDelete(false)}>
 								Cancel
 							</Button>
 							<Button type="button" className="h-8 bg-[#ef4444] dark:bg-red-700 text-xs text-white" onClick={() => void deleteNudge()} disabled={isDeleting}>

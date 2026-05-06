@@ -13,17 +13,17 @@ function getTriggerBadge(triggerType: NudgeLogRow["trigger_type"]): {
 		case "inactive":
 			return {
 				label: "💤 Inactive",
-				className: "bg-blue-500/20 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400",
+				className: "bg-[#eff6ff] dark:bg-[#0f1f3d] text-[#2563eb] dark:text-[#60a5fa]",
 			};
 		case "canceling":
 			return {
 				label: "🚨 Canceling",
-				className: "bg-red-500/20 dark:bg-red-500/20 text-red-700 dark:text-red-400",
+				className: "bg-[#fef2f2] dark:bg-[#2d0f0f] text-[#dc2626] dark:text-[#f87171]",
 			};
 		case "payment_failed":
 			return {
 				label: "💳 Payment",
-				className: "bg-yellow-500/20 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400",
+				className: "bg-[#fefce8] dark:bg-[#2d2500] text-[#ca8a04] dark:text-[#fbbf24]",
 			};
 		default:
 			return {
@@ -82,37 +82,31 @@ export default async function NudgeLogPage({
 	const manageUrlsByMemberId = new Map(manageUrlEntries);
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-[#f2f4f6] dark:bg-black px-4 py-6 md:px-6 md:py-8">
-			<div className="pointer-events-none absolute inset-0">
-				<div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-[#FA4616]/12 dark:bg-[#FA4616]/3 blur-2xl" />
-				<div className="absolute -right-16 bottom-12 h-64 w-64 rounded-full bg-[#0f172a]/6 dark:hidden blur-2xl" />
-				<div className="absolute bottom-0 left-1/2 h-56 w-[80%] -translate-x-1/2 rounded-full bg-white/25 dark:hidden blur-2xl" />
-			</div>
-
-			<div className="relative mx-auto w-full max-w-3xl">
-				<div className="mb-6 rounded-[20px] border border-white/80 dark:border-gray-800 bg-white/80 dark:bg-gray-950 p-4 shadow-[0_16px_40px_rgba(15,23,42,0.1)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] md:p-5">
+		<div className="min-h-screen bg-[#f5f5f5] dark:bg-[#111111] px-4 py-6 md:px-6 md:py-8">
+			<div className="mx-auto w-full max-w-3xl">
+				<div className="mb-6 rounded-[14px] border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] p-4 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] md:p-5">
 					<div className="flex items-center justify-between gap-3">
 						<div className="flex items-center gap-3">
-						<Button asChild size="2" className="gap-1.5 rounded-full border border-zinc-300 dark:border-gray-800 bg-white dark:bg-gray-900 px-3 text-zinc-700 dark:text-gray-300 dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+						<Button asChild size="2" className="gap-1.5 rounded-full border border-[#e0e0e0] dark:border-[#333333] bg-[#ffffff] dark:bg-[#222222] px-3 text-[#555555] dark:text-[#999999]">
 							<Link href={`/home/${companyId}`}>← Back</Link>
 						</Button>
-						<Heading size="6" className="text-[22px] font-semibold tracking-[-0.02em] text-[#0f172a] dark:text-white">
+						<Heading size="6" className="text-[22px] font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0]">
 							Nudges Sent
 						</Heading>
 						</div>
-						<Text className="rounded-full border border-white/75 dark:border-gray-800 bg-white/82 dark:bg-gray-950 px-2.5 py-1 text-[12px] text-[#64748b] dark:text-gray-600 shadow-[0_6px_16px_rgba(15,23,42,0.06)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+						<Text className="rounded-full border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-2.5 py-1 text-[12px] text-[#888888] dark:text-[#555555]">
 							{rows.length} total
 						</Text>
 					</div>
 				</div>
 
 				{rows.length === 0 ? (
-					<div className="flex min-h-[68vh] flex-col items-center justify-center rounded-[20px] border border-white/80 dark:border-gray-800 bg-white/72 dark:bg-gray-950 px-4 text-center shadow-[0_14px_40px_rgba(15,23,42,0.08)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+					<div className="flex min-h-[68vh] flex-col items-center justify-center rounded-[14px] border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-4 text-center shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
 						<Text className="text-[48px]">📭</Text>
-						<Heading size="4" className="mt-4 text-[18px] font-semibold text-[#111111] dark:text-white">
+						<Heading size="4" className="mt-4 text-[18px] font-semibold text-[#111111] dark:text-[#f0f0f0]">
 							Nothing sent yet
 						</Heading>
-						<Text className="mt-2 max-w-[300px] text-[14px] leading-[1.6] text-[#888888] dark:text-gray-500">
+						<Text className="mt-2 max-w-[300px] text-[14px] leading-[1.6] text-[#888888] dark:text-[#555555]">
 							Nudge is running in the background. When a member gets a nudge, it&apos;ll appear
 							here.
 						</Text>
@@ -124,17 +118,17 @@ export default async function NudgeLogPage({
 							return (
 								<Card
 									key={row.id}
-									className="mx-1 rounded-2xl border border-white/85 dark:border-gray-800 bg-white/82 dark:bg-gray-950 px-4 py-4 shadow-[0_10px_28px_rgba(15,23,42,0.08)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+									className="mx-1 rounded-2xl border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-4 py-4 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]"
 								>
 									<div className="flex items-start justify-between gap-3">
 										<div>
 											<TopLevelLink
 												href={manageUrlsByMemberId.get(row.member_id) ?? `https://whop.com/company/${companyId}`}
-												className="text-[14px] font-semibold text-[#111111] dark:text-white underline-offset-2 hover:underline"
+												className="text-[14px] font-semibold text-[#111111] dark:text-[#f0f0f0] underline-offset-2 hover:underline"
 											>
 												@{row.username}
 											</TopLevelLink>
-											<Text className="mt-1 text-[12px] text-[#9ca3af] dark:text-gray-600">{formatTimestamp(row.sent_at)}</Text>
+											<Text className="mt-1 text-[12px] text-[#888888] dark:text-[#555555]">{formatTimestamp(row.sent_at)}</Text>
 										</div>
 										<span
 											className={[
@@ -146,8 +140,8 @@ export default async function NudgeLogPage({
 										</span>
 									</div>
 
-									<div className="mt-3 rounded-xl border border-white/70 dark:border-gray-800 bg-white/75 dark:bg-gray-900 px-3 py-2.5 shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
-										<Text className="text-[13px] italic text-[#666666] dark:text-gray-500">
+									<div className="mt-3 rounded-xl border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#f9f9f9] dark:bg-[#222222] px-3 py-2.5">
+										<Text className="text-[13px] italic text-[#555555] dark:text-[#999999]">
 											{truncate(row.message_sent, 100)}
 										</Text>
 									</div>

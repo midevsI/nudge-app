@@ -112,11 +112,11 @@ export function SettingsForm({
 
 	return (
 		<div className="space-y-6">
-			<div className="rounded-xl border border-white/75 dark:border-gray-800 bg-white/78 dark:bg-gray-950 px-4 py-3 shadow-[0_10px_24px_rgba(15,23,42,0.08)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+			<div className="rounded-xl border border-[#fde8e0] dark:border-[#3a2000] bg-[#fff8f6] dark:bg-[#2a1500] px-4 py-3">
 				<Text size="2" weight="medium" className="text-[#FA4616] dark:text-orange-500">
 					Write like a human. Keep it short, warm, and clear.
 				</Text>
-				<Text size="1" color="gray" className="mt-1 dark:text-gray-500">
+				<Text size="1" color="gray" className="mt-1 text-[#555555] dark:text-[#999999]">
 					Personalized messages usually perform better than generic reminders.
 				</Text>
 			</div>
@@ -129,12 +129,12 @@ export function SettingsForm({
 					setValues((prev) => ({ ...prev, inactive_enabled: enabled }))
 				}
 			>
-				<div className="space-y-3 rounded-lg border border-white/75 dark:border-gray-800 bg-white/78 dark:bg-gray-900 p-3 shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+				<div className="space-y-3 rounded-lg border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] p-3 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
 					<div className="flex flex-wrap items-center gap-3">
 						<Text
 							size="1"
 							weight="bold"
-							className="uppercase tracking-[0.08em] text-zinc-600 dark:text-gray-600"
+							className="uppercase tracking-[0.08em] text-[#888888] dark:text-[#555555]"
 						>
 							Send after
 						</Text>
@@ -148,7 +148,7 @@ export function SettingsForm({
 							}))
 						}
 						>
-							<Select.Trigger className="bg-white/90 dark:bg-gray-900 dark:text-white border-gray-300 dark:border-gray-800" />
+							<Select.Trigger className="bg-[#ffffff] dark:bg-[#222222] text-[#111111] dark:text-[#f0f0f0] border-[#e0e0e0] dark:border-[#333333]" />
 							<Select.Content>
 								<Select.Item value="3">3 days</Select.Item>
 								<Select.Item value="7">7 days</Select.Item>
@@ -209,15 +209,15 @@ export function SettingsForm({
 			</TriggerCard>
 
 			{isSyncing ? (
-				<div className="inline-flex items-center gap-2 rounded-full border border-white/75 dark:border-gray-800 bg-white/80 dark:bg-gray-950 px-3 py-1.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+				<div className="inline-flex items-center gap-2 rounded-full border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-3 py-1.5 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
 					<Spinner loading size="1" />
-					<Text color="gray" size="2" className="dark:text-gray-500">
+					<Text color="gray" size="2" className="text-[#555555] dark:text-[#999999]">
 						Syncing members...
 					</Text>
 				</div>
 			) : (
-				<div className="inline-flex items-center gap-2 rounded-full border border-white/75 dark:border-gray-800 bg-white/80 dark:bg-gray-950 px-3 py-1.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
-					<Text color="gray" size="2" className="dark:text-gray-500">
+				<div className="inline-flex items-center gap-2 rounded-full border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-3 py-1.5 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
+					<Text color="gray" size="2" className="text-[#555555] dark:text-[#999999]">
 						{`${trackedCount} members currently being tracked`}
 					</Text>
 				</div>
@@ -234,7 +234,7 @@ export function SettingsForm({
 				onClick={saveSettings}
 				disabled={isSaving}
 				size="3"
-				className="h-12 w-full rounded-xl border border-white/40 dark:border-orange-600 bg-[linear-gradient(135deg,#ff6a3d,#FA4616)] dark:bg-[#FA4616] text-[15px] font-semibold text-white shadow-[0_12px_30px_rgba(250,70,22,0.34)] dark:shadow-[0_4px_12px_rgba(250,70,22,0.3)] transition-all duration-200 hover:-translate-y-0.5 dark:hover:bg-[#E83D0E]"
+				className="h-12 w-full rounded-xl border border-[#FA4616] bg-[#FA4616] text-[15px] font-semibold text-white transition-colors hover:bg-[#E83D0E]"
 			>
 				<Spinner loading={isSaving} size="1">
 					{isSaving ? "Saving..." : "Save & Activate Nudge"}
@@ -258,13 +258,13 @@ function TriggerCard({
 	children: React.ReactNode;
 }) {
 	return (
-		<Card className="rounded-[18px] border border-white/80 dark:border-gray-800 bg-white/82 dark:bg-gray-950 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.08)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+		<Card className="rounded-[14px] border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] p-5 shadow-[0_1px_4px_rgba(0,0,0,0.07)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
 			<div className="flex items-start justify-between gap-4">
 				<div className="min-w-0">
-					<Heading size="4" className="leading-tight dark:text-white">
+					<Heading size="4" className="leading-tight text-[#111111] dark:text-[#f0f0f0]">
 						{title}
 					</Heading>
-					<Text size="2" color="gray" className="mt-1.5 max-w-2xl leading-6 dark:text-gray-500">
+					<Text size="2" color="gray" className="mt-1.5 max-w-2xl leading-6 text-[#555555] dark:text-[#999999]">
 						{description}
 					</Text>
 				</div>
@@ -273,13 +273,13 @@ function TriggerCard({
 					<Text
 						size="1"
 						weight="medium"
-						className={enabled ? "text-emerald-600 dark:text-green-500" : "text-zinc-500 dark:text-gray-600"}
+						className={enabled ? "text-[#22c55e]" : "text-[#888888] dark:text-[#555555]"}
 					>
 						{enabled ? "Enabled" : "Paused"}
 					</Text>
 				</div>
 			</div>
-			<div className="mt-5 space-y-4 border-t border-zinc-200/80 dark:border-gray-800 pt-4">{children}</div>
+			<div className="mt-5 space-y-4 border-t border-[#eeeeee] dark:border-[#2a2a2a] pt-4">{children}</div>
 		</Card>
 	);
 }
@@ -302,12 +302,12 @@ function MessageField({
 			? "text-red-600 dark:text-red-500"
 			: count >= 120
 				? "text-amber-600 dark:text-amber-500"
-				: "text-zinc-500 dark:text-gray-600";
+				: "text-[#888888] dark:text-[#555555]";
 
 	return (
 		<div className="space-y-2">
 			<div className="flex items-center justify-between gap-3">
-				<Text size="1" weight="bold" className="uppercase tracking-[0.08em] text-zinc-600 dark:text-gray-600">
+				<Text size="1" weight="bold" className="uppercase tracking-[0.08em] text-[#888888] dark:text-[#555555]">
 				{label}
 				</Text>
 				<Text size="1" className={countTone}>
@@ -320,9 +320,9 @@ function MessageField({
 				placeholder={placeholder}
 				maxLength={160}
 				rows={4}
-				className="leading-6 dark:bg-gray-900 dark:text-white dark:border-gray-800"
+				className="leading-6 bg-[#ffffff] dark:bg-[#222222] text-[#111111] dark:text-[#f0f0f0] border-[#e0e0e0] dark:border-[#333333]"
 			/>
-			<Text size="1" color="gray" className="leading-5 dark:text-gray-600">
+			<Text size="1" color="gray" className="leading-5 text-[#555555] dark:text-[#999999]">
 				Use [username] to personalize and keep the tone conversational.
 			</Text>
 		</div>
