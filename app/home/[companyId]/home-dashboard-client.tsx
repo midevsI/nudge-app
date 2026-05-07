@@ -270,7 +270,7 @@ export function HomeDashboardClient({
 											className={[
 												"h-2 w-2 rounded-full",
 												card.enabled
-													? "bg-[#22c55e] dark:bg-green-600"
+													? "bg-[#22c55e] dark:bg-green-600 animate-pulse"
 													: "bg-[#d1d5db] dark:bg-[#444444]",
 											].join(" ")}
 										/>
