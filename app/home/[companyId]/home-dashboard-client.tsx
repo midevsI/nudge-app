@@ -177,30 +177,28 @@ export function HomeDashboardClient({
 				visible={toastState.visible}
 			/>
 
-			<div className="flex justify-end items-center gap-2 pr-5 pt-5">
-					<Link
-						href={`/log/${companyId}`}
-						aria-label="View sent nudges"
-						className="h-8 w-8 flex items-center justify-center text-[#888888] hover:text-[#FA4616] transition-colors"
-					>
-						<EyeIcon className="w-5 h-5" />
-					</Link>
-					<Link
-						href={`/settings/${companyId}`}
-						aria-label="Settings"
-						className="h-8 w-8 flex items-center justify-center text-[#888888] hover:text-[#FA4616] transition-colors"
-					>
-						<SettingsIcon className="w-5 h-5" />
-					</Link>
-				</div>
+		<div className="flex justify-between items-center px-4 pr-5 pt-5 pb-3 sm:px-6">
+			<Text className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#888888] dark:text-[#555555]">
+				Active Nudges
+			</Text>
+			<div className="flex justify-end items-center gap-2">
+				<Link
+					href={`/log/${companyId}`}
+					aria-label="View sent nudges"
+					className="h-8 w-8 flex items-center justify-center text-[#888888] hover:text-[#FA4616] transition-colors"
+				>
+					<EyeIcon className="w-5 h-5" />
+				</Link>
+				<Link
+					href={`/settings/${companyId}`}
+					aria-label="Settings"
+					className="h-8 w-8 flex items-center justify-center text-[#888888] hover:text-[#FA4616] transition-colors"
+				>
+					<SettingsIcon className="w-5 h-5" />
+				</Link>
 			</div>
-
-			<div className="px-4 pt-5 pb-6 sm:px-6">
-				<Text className="pb-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#888888] dark:text-[#555555]">
-					Active Nudges
-				</Text>
-
-				<div className="space-y-3">
+		</div>
+			<div className="space-y-3 px-4 pb-6 sm:px-6">
 				{cards.map((card) => (
 					<Card
 						key={card.key}
