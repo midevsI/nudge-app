@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Button, Card, Text } from "@whop/react/components";
 import { Toast } from "@/components/toast";
-import { PencilIcon, TrashIcon } from "@/components/icons";
+import { PencilIcon, TrashIcon, EyeIcon, SettingsIcon } from "@/components/icons";
 import type { SettingsRow } from "@/lib/supabase";
 
 type TriggerKey = "inactive" | "canceling" | "payment";
@@ -177,19 +177,20 @@ export function HomeDashboardClient({
 				visible={toastState.visible}
 			/>
 
-			<div className="flex justify-end items-center gap-3 pr-5 pt-5">
+			<div className="flex justify-end items-center gap-2 pr-5 pt-5">
 					<Link
 						href={`/log/${companyId}`}
-						className="text-[13px] font-medium text-[#FA4616] hover:underline underline-offset-2"
+						aria-label="View sent nudges"
+						className="h-8 w-8 flex items-center justify-center text-[#888888] hover:text-[#FA4616] transition-colors"
 					>
-						View sent nudges →
+						<EyeIcon className="w-5 h-5" />
 					</Link>
 					<Link
 						href={`/settings/${companyId}`}
 						aria-label="Settings"
-						className="text-[16px] text-[#888888] hover:text-[#FA4616] transition-colors"
+						className="h-8 w-8 flex items-center justify-center text-[#888888] hover:text-[#FA4616] transition-colors"
 					>
-						⚙️
+						<SettingsIcon className="w-5 h-5" />
 					</Link>
 				</div>
 			</div>
