@@ -198,7 +198,8 @@ export function HomeDashboardClient({
 				</Link>
 			</div>
 		</div>
-			<div className="space-y-3 px-4 pb-6 sm:px-6">
+
+			<div className="space-y-3 px-4 pb-6 sm:px-6">
 				{cards.map((card) => (
 					<Card
 						key={card.key}
