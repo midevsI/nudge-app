@@ -134,7 +134,7 @@ export default function NudgeLogClient({
 								)}
 							</div>
 							<Text className="rounded-full border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-2.5 py-1 text-[12px] font-semibold text-[#FA4616]">
-								{filteredRows.length}
+								{filteredRows.length} sent
 							</Text>
 						</div>
 					</div>
