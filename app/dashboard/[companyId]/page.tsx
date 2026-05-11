@@ -1,10 +1,16 @@
 import { headers } from "next/headers";
 import Image from "next/image";
+import { Poppins } from "next/font/google";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Button } from "@whop/react/components";
 import { type SettingsRow, supabaseRequest } from "@/lib/supabase";
 import { whopsdk } from "@/lib/whop-sdk";
+
+const poppins = Poppins({
+	subsets: ["latin"],
+	weight: ["600"],
+});
 
 export default async function DashboardPage({
 	params,
@@ -36,24 +42,22 @@ export default async function DashboardPage({
 					WELCOME TO NUDGE
 				</div>
 
-				<div className="mt-5 mx-auto h-[180px] w-auto sm:h-[210px]">
+				<div className="mt-5 mx-auto h-[205px] w-auto sm:h-[235px]">
 					<Image
-						src="/whop-illo-telescope.svg"
-						alt="Telescope illustration"
-						width={290}
-						height={250}
+						src="/engagement.svg"
+						alt="Engagement illustration"
+						width={440}
+						height={504}
 						className="h-full w-full object-contain"
 						priority
 					/>
 				</div>
 
-				<h1 className="mt-6 max-w-[520px] text-[26px] font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0] sm:text-[34px]">
-					Welcome. Let&apos;s bring members back.
+				<h1
+					className={`${poppins.className} mt-6 max-w-[520px] text-[28px] font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0] sm:text-[36px]`}
+				>
+					Let&apos;s bring <span className="text-[#FA4616]">members</span> back
 				</h1>
-				<p className="mx-auto mt-2.5 max-w-[500px] text-[14px] leading-[1.6] text-[#555555] dark:text-[#999999]">
-					Set up your first nudges in under a minute. We&apos;ll handle the
-					follow-up automatically.
-				</p>
 
 				<Button
 					asChild
@@ -62,10 +66,6 @@ export default async function DashboardPage({
 				>
 					<Link href={`/settings/${companyId}`}>Start setup</Link>
 				</Button>
-
-				<p className="mt-3 text-[12px] text-[#888888] dark:text-[#555555]">
-					No extra tools. No complicated setup.
-				</p>
 			</div>
 		</div>
 	);
