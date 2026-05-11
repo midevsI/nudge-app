@@ -54,10 +54,13 @@ export default async function DashboardPage({
 				</div>
 
 				<h1
-					className={`${poppins.className} mt-6 max-w-[520px] text-[28px] font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0] sm:text-[36px]`}
+					className={`${poppins.className} mt-6 max-w-[520px] text-[25px] font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0] sm:text-[31px]`}
 				>
 					Let&apos;s bring <span className="text-[#FA4616]">members</span> back
 				</h1>
+				<p className="mt-2 text-[14px] text-[#555555] dark:text-[#999999]">
+					Recover more revenue on autopilot.
+				</p>
 
 				<Button
 					asChild
