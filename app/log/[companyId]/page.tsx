@@ -19,25 +19,11 @@ export default async function NudgeLogPage({
 		},
 	});
 
-	const memberIds = Array.from(new Set(rows.map((row) => row.member_id)));
-	const manageUrlEntries = await Promise.all(
-		memberIds.map(async (memberId) => {
-			try {
-				const member = await whopsdk.members.retrieve(memberId);
-				const manageUrl = (member as { manage_url?: string | null }).manage_url;
-				return [memberId, manageUrl ?? `https://whop.com/company/${companyId}`] as const;
-			} catch {
-				return [memberId, `https://whop.com/company/${companyId}`] as const;
-			}
-		}),
-	);
-	const manageUrlsByMemberId = new Map(manageUrlEntries);
-
 	return (
 		<NudgeLogClient
 			rows={rows}
 			companyId={companyId}
-			manageUrlsByMemberId={manageUrlsByMemberId}
+			manageUrlsByMemberId={new Map()}
 		/>
 	);
 }

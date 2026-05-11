@@ -18,6 +18,8 @@ export default async function HomeDashboardPage({
 		table: "settings",
 		query: {
 			company_id: `eq.${companyId}`,
+			select:
+				"company_id,inactive_days,inactive_message,inactive_enabled,cancel_message,cancel_enabled,payment_message,payment_enabled,created_at",
 			limit: 1,
 		},
 	});

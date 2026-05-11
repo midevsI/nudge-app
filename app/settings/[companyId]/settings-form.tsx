@@ -43,6 +43,10 @@ export function SettingsForm({
 
 	useEffect(() => {
 		let isMounted = true;
+		const scheduleSync =
+			typeof window.requestIdleCallback === "function"
+				? (callback: () => void) => window.requestIdleCallback(callback)
+				: (callback: () => void) => window.setTimeout(callback, 250);
 		async function syncMembers() {
 			try {
 				const response = await fetch("/api/sync-members", {
@@ -67,7 +71,9 @@ export function SettingsForm({
 			}
 		}
 
-		syncMembers();
+		scheduleSync(() => {
+			void syncMembers();
+		});
 		return () => {
 			isMounted = false;
 		};
@@ -101,7 +107,6 @@ export function SettingsForm({
 			}
 
 			router.push(`/success/${companyId}`);
-			router.refresh();
 		} catch (saveError) {
 			console.error(saveError);
 			setError("Could not save your settings. Please try again.");

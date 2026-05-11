@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import Link from "next/link";
 import { Button, Heading } from "@whop/react/components";
-import { DEFAULT_SETTINGS, type MemberRow, type SettingsRow, supabaseRequest } from "@/lib/supabase";
+import { DEFAULT_SETTINGS, type SettingsRow, supabaseRequest } from "@/lib/supabase";
 import { whopsdk } from "@/lib/whop-sdk";
 import { SettingsForm } from "./settings-form";
 
@@ -13,22 +13,13 @@ export default async function SettingsPage({
 	const { companyId } = await params;
 	await whopsdk.verifyUserToken(await headers());
 
-	const [settingsRows, memberRows] = await Promise.all([
-		supabaseRequest<SettingsRow[]>({
-			table: "settings",
-			query: {
-				company_id: `eq.${companyId}`,
-				limit: 1,
-			},
-		}),
-		supabaseRequest<MemberRow[]>({
-			table: "members",
-			query: {
-				company_id: `eq.${companyId}`,
-				select: "id",
-			},
-		}),
-	]);
+	const settingsRows = await supabaseRequest<SettingsRow[]>({
+		table: "settings",
+		query: {
+			company_id: `eq.${companyId}`,
+			limit: 1,
+		},
+	});
 
 	const existing = settingsRows[0];
 	const initialValues = {
@@ -69,7 +60,7 @@ export default async function SettingsPage({
 				<SettingsForm
 					companyId={companyId}
 					initialValues={initialValues}
-					initialTrackedCount={memberRows.length}
+					initialTrackedCount={0}
 				/>
 			</div>
 		</div>
