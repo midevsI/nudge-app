@@ -30,13 +30,13 @@ export default async function DashboardPage({
 	}
 
 	return (
-		<div className="min-h-screen bg-[#f5f5f5] dark:bg-[#111111] px-4 py-10">
-			<div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-[760px] flex-col items-center justify-center text-center">
-				<div className="inline-flex items-center rounded-full border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-3 py-1 text-[12px] font-semibold tracking-[0.08em] text-[#555555] dark:text-[#999999]">
+		<div className="h-[100dvh] overflow-hidden bg-[#f5f5f5] dark:bg-[#111111] px-4">
+			<div className="mx-auto flex h-full w-full max-w-[720px] flex-col items-center justify-center text-center">
+				<div className="inline-flex items-center rounded-full border border-[#eeeeee] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#1c1c1c] px-3 py-1 text-[11px] font-semibold tracking-[0.08em] text-[#555555] dark:text-[#999999]">
 					WELCOME TO NUDGE
 				</div>
 
-				<div className="mt-7 mx-auto h-[220px] w-auto sm:h-[250px]">
+				<div className="mt-5 mx-auto h-[180px] w-auto sm:h-[210px]">
 					<Image
 						src="/whop-illo-telescope.svg"
 						alt="Telescope illustration"
@@ -47,21 +47,25 @@ export default async function DashboardPage({
 					/>
 				</div>
 
-				<h1 className="mt-8 max-w-[620px] text-[28px] font-semibold tracking-[-0.025em] text-[#111111] dark:text-[#f0f0f0] sm:text-[36px]">
-					Turn churn into second chances.
+				<h1 className="mt-6 max-w-[520px] text-[26px] font-semibold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0] sm:text-[34px]">
+					Welcome. Let&apos;s bring members back.
 				</h1>
-				<p className="mx-auto mt-3 max-w-[520px] text-[15px] leading-[1.65] text-[#555555] dark:text-[#999999]">
-					Nudge reaches inactive, canceling, and failed-payment members
-					automatically so you recover revenue without extra manual work.
+				<p className="mx-auto mt-2.5 max-w-[500px] text-[14px] leading-[1.6] text-[#555555] dark:text-[#999999]">
+					Set up your first nudges in under a minute. We&apos;ll handle the
+					follow-up automatically.
 				</p>
 
 				<Button
 					asChild
 					size="3"
-					className="mt-8 h-12 w-full max-w-[360px] rounded-xl border border-[#FA4616] bg-[#FA4616] text-[15px] font-semibold text-white transition-colors hover:bg-[#E83D0E]"
+					className="mt-6 h-12 w-full max-w-[340px] rounded-xl border border-[#FA4616] bg-[#FA4616] text-[15px] font-semibold text-white transition-colors hover:bg-[#E83D0E]"
 				>
-					<Link href={`/settings/${companyId}`}>Set up Nudge</Link>
+					<Link href={`/settings/${companyId}`}>Start setup</Link>
 				</Button>
+
+				<p className="mt-3 text-[12px] text-[#888888] dark:text-[#555555]">
+					No extra tools. No complicated setup.
+				</p>
 			</div>
 		</div>
 	);
